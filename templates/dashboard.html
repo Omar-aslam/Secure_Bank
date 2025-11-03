@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - SecureBank</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="dashboard-page">
+    <nav class="navbar">
+        <div class="navbar-content">
+            <div class="navbar-brand">
+                <svg width="40" height="40" viewBox="0 0 60 60" fill="none">
+                    <rect width="60" height="60" rx="12" fill="#2563eb"/>
+                    <path d="M30 10L50 20V25H10V20L30 10Z" fill="white"/>
+                    <rect x="15" y="27" width="6" height="18" fill="white"/>
+                    <rect x="27" y="27" width="6" height="18" fill="white"/>
+                    <rect x="39" y="27" width="6" height="18" fill="white"/>
+                    <rect x="10" y="45" width="40" height="5" fill="white"/>
+                </svg>
+                <span>SecureBank</span>
+            </div>
+            <div class="navbar-user">
+                <span class="user-name">{{ full_name }}</span>
+                <span class="account-number">{{ account_number }}</span>
+                <a href="/logout" class="btn-logout">Logout</a>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="dashboard-container">
+        <div class="account-summary">
+            <h2>Account Summary</h2>
+            <div class="balance-card">
+                <p class="balance-label">Available Balance</p>
+                <p class="balance-amount" id="balance">$0.00</p>
+                <p class="account-type" id="accountType">Loading...</p>
+            </div>
+        </div>
+        
+        <div class="actions-grid">
+            <div class="action-card">
+                <h3>Deposit Funds</h3>
+                <form id="depositForm">
+                    <div class="form-group">
+                        <label for="depositAmount">Amount ($)</label>
+                        <input type="number" id="depositAmount" step="0.01" min="0.01" required 
+                               placeholder="0.00">
+                    </div>
+                    <button type="submit" class="btn-primary">Deposit</button>
+                </form>
+            </div>
+            
+            <div class="action-card">
+                <h3>Withdraw Funds</h3>
+                <form id="withdrawForm">
+                    <div class="form-group">
+                        <label for="withdrawAmount">Amount ($)</label>
+                        <input type="number" id="withdrawAmount" step="0.01" min="0.01" required 
+                               placeholder="0.00">
+                    </div>
+                    <button type="submit" class="btn-primary btn-warning">Withdraw</button>
+                </form>
+            </div>
+            
+            <div class="action-card">
+                <h3>Transfer Funds</h3>
+                <form id="transferForm">
+                    <div class="form-group">
+                        <label for="transferAccount">To Account Number</label>
+                        <input type="text" id="transferAccount" required 
+                               placeholder="e.g., ACC002">
+                    </div>
+                    <div class="form-group">
+                        <label for="transferAmount">Amount ($)</label>
+                        <input type="number" id="transferAmount" step="0.01" min="0.01" required 
+                               placeholder="0.00">
+                    </div>
+                    <button type="submit" class="btn-primary btn-success">Transfer</button>
+                </form>
+            </div>
+        </div>
+        
+        <div class="transactions-section">
+            <h2>Recent Transactions</h2>
+            <div id="transactionsList" class="transactions-list">
+                <p class="loading">Loading transactions...</p>
+            </div>
+        </div>
+    </div>
+    
+    <div id="notification" class="notification" style="display: none;">
+        <span id="notificationMessage"></span>
+    </div>
+    
+    <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+</body>
+</html>

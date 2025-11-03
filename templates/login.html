@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bank Login - SecureBank</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="login-page">
+    <div class="login-container">
+        <div class="login-card">
+            <div class="bank-logo">
+                <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+                    <rect width="60" height="60" rx="12" fill="#2563eb"/>
+                    <path d="M30 10L50 20V25H10V20L30 10Z" fill="white"/>
+                    <rect x="15" y="27" width="6" height="18" fill="white"/>
+                    <rect x="27" y="27" width="6" height="18" fill="white"/>
+                    <rect x="39" y="27" width="6" height="18" fill="white"/>
+                    <rect x="10" y="45" width="40" height="5" fill="white"/>
+                </svg>
+                <h1>SecureBank</h1>
+            </div>
+            
+            <h2>Account Login</h2>
+            <p class="subtitle">Enter your credentials to access your account</p>
+            
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="account_number">Account Number</label>
+                    <input type="text" id="account_number" name="account_number" required 
+                           placeholder="e.g., ACC001" autocomplete="username">
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required 
+                           placeholder="Enter your password" autocomplete="current-password">
+                </div>
+                
+                <div id="error-message" class="error-message" style="display: none;"></div>
+                
+                <button type="submit" class="btn-primary">Login</button>
+            </form>
+            
+            <div class="demo-info">
+                <p><strong>Demo Accounts:</strong></p>
+                <p>Account: ACC001 | Password: password123</p>
+                <p>Account: ACC002 | Password: password123</p>
+            </div>
+        </div>
+    </div>
+    
+    <script src="{{ url_for('static', filename='js/login.js') }}"></script>
+</body>
+</html>
