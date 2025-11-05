@@ -1,3 +1,8 @@
+<!-- This is the main dashboard page users see after logging in. -->
+<!-- It shows their name, account number, balances, and lets them deposit, withdraw, or transfer money. -->
+<!-- Each section is labeled so users know what to do. -->
+<!-- SecureBank Dashboard HTML -->
+<!-- Renders user info, account summary, actions, and transactions -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,11 +35,17 @@
     
     <div class="dashboard-container">
         <div class="account-summary">
-            <h2>Account Summary</h2>
+            <h2>Total Balance</h2>
             <div class="balance-card">
-                <p class="balance-label">Available Balance</p>
+                <p class="balance-label">Combined Available Balance</p>
                 <p class="balance-amount" id="balance">$0.00</p>
-                <p class="account-type" id="accountType">Loading...</p>
+            </div>
+        </div>
+        
+        <div class="accounts-section">
+            <h2>Your Accounts</h2>
+            <div id="accountsContainer">
+                <p class="loading">Loading accounts...</p>
             </div>
         </div>
         
@@ -47,7 +58,7 @@
                         <input type="number" id="depositAmount" step="0.01" min="0.01" required 
                                placeholder="0.00">
                     </div>
-                    <button type="submit" class="btn-primary">Deposit</button>
+                    <button type="submit" class="btn-primary">Deposit to Checking</button>
                 </form>
             </div>
             
@@ -59,7 +70,7 @@
                         <input type="number" id="withdrawAmount" step="0.01" min="0.01" required 
                                placeholder="0.00">
                     </div>
-                    <button type="submit" class="btn-primary btn-warning">Withdraw</button>
+                    <button type="submit" class="btn-primary btn-warning">Withdraw from Checking</button>
                 </form>
             </div>
             
@@ -67,9 +78,25 @@
                 <h3>Transfer Funds</h3>
                 <form id="transferForm">
                     <div class="form-group">
-                        <label for="transferAccount">To Account Number</label>
-                        <input type="text" id="transferAccount" required 
-                               placeholder="e.g., ACC002">
+                        <label for="transferType">Transfer Type</label>
+                        <select id="transferType" required>
+                            <option value="internal">Between My Accounts</option>
+                            <option value="external">To Another User</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="fromAccountType">From Account</label>
+                        <select id="fromAccountType" required>
+                            <option value="">Select Source Account</option>
+                        </select>
+                    </div>
+                    <div id="toAccountWrapper" class="form-group">
+                        <label for="toAccountType">To Account</label>
+                        <select id="toAccountType" required>
+                            <option value="">Select Destination Account</option>
+                        </select>
+                        <input type="text" id="externalAccount" style="display: none" 
+                               placeholder="Enter Account Number" required>
                     </div>
                     <div class="form-group">
                         <label for="transferAmount">Amount ($)</label>
